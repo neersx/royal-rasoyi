@@ -1,1 +1,162 @@
-<p>food-details works!</p>
+<!--====== Start Food Menu Details Section ======-->
+<section class="menu-details-section pt-130 pb-65" *ngIf="foodDetails">
+    <div class="container">
+      <!--=== Menu Details Wrapper ===-->
+      <div class="menu-details-wrapper">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <!--=== Menu Image ===-->
+            <div class="menu-image mb-50 wow fadeInLeft">
+              <img [src]="foodDetails.images?.[0].url || 'assets/images/default-food.jpg'" 
+                   [alt]="foodDetails.name || 'Food Image'" />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <!--=== Menu Info ===-->
+            <div class="menu-info-content mb-50 wow fadeInRight">
+              <h4 class="title">{{ foodDetails.name || 'Unknown Dish' }}</h4>
+              <p>{{ foodDetails.description || 'Description not available.' }}</p>
+              <span class="price">
+                <span class="currency">₹</span>{{ foodDetails.price || '0.00' }}
+                <span *ngIf="foodDetails.previousPrice" class="pre-price">
+                  <span class="currency">₹</span>{{ foodDetails.previousPrice }}
+                </span>
+              </span>
+              <div class="product-cart-variation">
+                <ul>
+                  <li>
+                    <div class="quantity-input">
+                      <button class="quantity-down" (click)="decreaseQuantity()">
+                        <i class="far fa-minus"></i>
+                      </button>
+                      <input
+                        class="quantity"
+                        type="text"
+                        [(ngModel)]="foodDetails.quantity"
+                        name="quantity"
+                      />
+                      <button class="quantity-up" (click)="increaseQuantity()">
+                        <i class="far fa-plus"></i>
+                      </button>
+                    </div>
+                  </li>
+                  <li>
+                    <select class="wide">
+                      <option *ngFor="let size of foodDetails.sizes || []" [value]="size">
+                        {{ size }}
+                      </option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+              <div class="add-to-cart">
+                <button class="theme-btn style-one" (click)="addToCart(foodDetails)">
+                  Add To Cart
+                </button>
+              </div>
+              <div class="ratings">
+                <p>
+                  Ratings: 
+                  <span class="stars">{{ foodDetails.ratings || 'N/A' }}/5</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6">
+            <!--=== Description Content Wrapper ===-->
+            <div class="description-content-wrapper mb-30 wow fadeInDown">
+              <div class="foodix-tabs style-three mb-20">
+                <ul class="nav nav-tabs wow fadeInDown">
+                  <li>
+                    <button
+                      class="nav-link active"
+                      data-bs-toggle="tab"
+                      data-bs-target="#cat1"
+                    >
+                      Food Details
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="cat1">
+                  <div class="content-box">
+                    <h4>Ingredients:</h4>
+                    <ul class="check-list mb-30">
+                      <li *ngFor="let ingredient of foodDetails.ingredients || []">
+                        {{ ingredient.name }}
+                      </li>
+                    </ul>
+                    <h4>Food Items:</h4>
+                    <ul class="check-list mb-30">
+                      <li *ngFor="let item of foodDetails.foodItems || []">
+                        {{ item.name }} ({{ item.quantity }}, {{ item.weight }}g):
+                        {{ item.description || 'No description available.' }}
+                      </li>
+                    </ul>
+                    <h4>Comments:</h4>
+                    <ul class="check-list mb-30">
+                      <li *ngFor="let comment of foodDetails.comments || []">
+                        <strong>{{ comment.userName || 'Anonymous' }}:</strong> 
+                        {{ comment.comment }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="foodix-banner-wrapper">
+              <div
+                *ngFor="let banner of foodDetails.banners || []"
+                class="foodix-banner-item style-three mb-30 wow fadeInUp"
+              >
+                <div
+                  class="banner-inner-wrap bg_cover"
+                  [style.background-image]="'url(' + (banner.image || 'assets/images/default-banner.jpg') + ')'"
+                >
+                  <div class="banner-img">
+                    <img [src]="banner.icon || 'assets/images/default-icon.jpg'" 
+                         [alt]="banner.title || 'Banner Image'" />
+                  </div>
+                  <div class="banner-content">
+                    <span>{{ banner.tagline || 'Special Offer' }}</span>
+                    <h3>{{ banner.title || 'Banner Title' }}</h3>
+                    <p>{{ banner.description || 'Details coming soon.' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--=== Related Item Wrapper ===-->
+        <div class="releted-item-wrap pt-45">
+          <h3 class="releted-title mb-30 wow fadeInDown">Related Items</h3>
+          <div class="row justify-content-center">
+            <div
+              *ngFor="let relatedItem of foodDetails.relatedItems || []"
+              class="col-lg-4 col-md-6 col-sm-12"
+            >
+              <div class="menu-item related-menu-item text-center mb-30 wow fadeInUp">
+                <div class="menu-image">
+                  <img height="250px" [src]="relatedItem.image?.url || 'assets/images/default-food.jpg'" 
+                       [alt]="relatedItem.image.name || 'Related Food'" />
+                </div>
+                <div class="menu-info">
+                  <h4 class="title">
+                    <a [routerLink]="'/food-details/' + relatedItem.id">
+                      {{ relatedItem.name || 'Unknown Dish' }}
+                    </a>
+                  </h4>
+                  <p>{{ relatedItem.description || 'No description available.' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
