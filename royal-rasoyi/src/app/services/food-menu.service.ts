@@ -35,7 +35,7 @@ export class FoodMenuService {
         lastUpdatedOn: new Date('2025-01-05'),
         price: '800',
         quantity: 10,
-        measurement: 'Weight',
+        measurement: 'per Kg',
         addons: ['Extra Ghee', 'Dry Fruits'],
         discount: '10%',
         day: 'Monday',
@@ -78,8 +78,8 @@ export class FoodMenuService {
         day: 'Tuesday',
         ratings: 4.5,
         foodItems: [
-          { id: 1, name: 'Chole', quantity: 1, weight: '300g', description: 'Spicy and flavorful chickpeas.' },
-          { id: 2, name: 'Poori', quantity: 5, weight: '150g', description: 'Crispy and golden fried bread.' },
+          { id: 1, name: 'Chole', quantity: null, weight: '300g', description: 'Spicy and flavorful chickpeas.' },
+          { id: 2, name: 'Poori', quantity: 5, weight: null, description: 'Crispy and golden fried bread.' },
         ],
         comments: [
           { id: 1, comment: 'Great taste and fresh!', userId: 103, userName: 'Alice Brown', userImage: 'https://example.com/alice.jpg' },
@@ -186,7 +186,7 @@ export class FoodMenuService {
         lastUpdatedOn: new Date('2025-01-05'),
         price: '1200',
         quantity: 1,
-        measurement: 'Weight',
+        measurement: 'per Kg',
         addons: ['Extra Honey', 'Dry Fruits'],
         discount: '10%',
         day: 'Friday',

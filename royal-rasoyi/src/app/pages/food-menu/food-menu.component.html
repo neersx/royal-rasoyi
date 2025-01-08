@@ -64,7 +64,7 @@
                                   </h4>
                                   <ul class="check-list style-one">
                                     <li *ngFor="let addon of item.foodItems">
-                                      <i class="far fa-check-circle"></i> {{addon.measurement}} {{addon.measurement !== 'Weight' ? addon.quantity : addon.weight}} {{ addon.name }} 
+                                      <i class="far fa-check-circle"></i> {{addon.quantity ?? addon.weight}} {{ addon.name }} 
                                     </li>
                                   </ul>
                                   <a href="menu-details.html" class="theme-btn style-two">
