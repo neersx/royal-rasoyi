@@ -1,3 +1,23 @@
+        <!--====== Start Page Section ======-->
+        <section class="page-banner mt-110">
+            <div class="page-bg-wrapper p-r z-1 bg_cover pt-100 pb-110" style="background-image: url(assets/images/bg/page-bg.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!--=== Page Banner Content ===-->
+                            <div class="page-banner-content text-center">
+                                <h1 class="page-title">Food Details</h1>
+                                <ul class="breadcrumb-link">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Menu Details</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--====== End Page Section ======-->
+
 <!--====== Start Food Menu Details Section ======-->
 <section class="menu-details-section pt-130 pb-65" *ngIf="foodDetails">
     <div class="container">
@@ -17,11 +37,12 @@
               <h4 class="title">{{ foodDetails.name || 'Unknown Dish' }}</h4>
               <p>{{ foodDetails.description || 'Description not available.' }}</p>
               <span class="price">
-                <span class="currency">₹</span>{{ foodDetails.price || '0.00' }}
-                <span *ngIf="foodDetails.previousPrice" class="pre-price">
-                  <span class="currency">₹</span>{{ foodDetails.previousPrice }}
+                <span class="currency">₹</span>{{ foodDetails.price  - (foodDetails.price/100 * foodDetails.discount) || '0.00' }}
+                <span *ngIf="foodDetails.discount" class="pre-price">
+                  <span class="currency">₹</span>{{ foodDetails.price || '0.00' }}
                 </span>
               </span>
+              
               <div class="product-cart-variation">
                 <ul>
                   <li>
@@ -147,8 +168,8 @@
                 </div>
                 <div class="menu-info">
                   <h4 class="title">
-                    <a [routerLink]="'/food-details/' + relatedItem.id">
-                      {{ relatedItem.name || 'Unknown Dish' }}
+                    <a [routerLink]="'/food-details/' + relatedItem.name">
+                      {{ relatedItem.title || 'Unknown Dish' }}
                     </a>
                   </h4>
                   <p>{{ relatedItem.description || 'No description available.' }}</p>
