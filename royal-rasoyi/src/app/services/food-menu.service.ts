@@ -13,7 +13,7 @@ export class FoodMenuService {
     return [
       {
         id: 1,
-        name: 'Maharaja Laddoo',
+        name: 'maharaja-laddoo',
         title: 'Maharaja Laddoo',
         bestSeason: 'Winter',
         isNonVeg: false,
@@ -50,7 +50,7 @@ export class FoodMenuService {
       },
       {
         id: 2,
-        name: 'Chole Poori',
+        name: 'chole-poori',
         title: 'Spicy Chole Poori',
         bestSeason: 'All',
         isNonVeg: false,
@@ -88,7 +88,7 @@ export class FoodMenuService {
       },
       {
         id: 3,
-        name: 'Royal Thali',
+        name: 'royal-thali',
         title: 'Deluxe Royal Thali',
         bestSeason: 'All',
         isNonVeg: false,
@@ -127,7 +127,7 @@ export class FoodMenuService {
       },
       {
         id: 4,
-        name: 'Veg Appe',
+        name: 'veg-appe',
         title: 'Crispy Veg Appe',
         bestSeason: 'All',
         isNonVeg: false,
@@ -164,7 +164,7 @@ export class FoodMenuService {
       },
       {
         id: 5,
-        name: 'Shahi Laddoo',
+        name: 'shahi-laddoo',
         title: 'Royal Shahi Laddoo',
         bestSeason: 'Winter',
         isNonVeg: false,
@@ -201,7 +201,7 @@ export class FoodMenuService {
       },
       {
         id: 6,
-        name: 'Veg Sandwich',
+        name: 'veg-sandwich',
         title: 'Crispy Sandwich',
         bestSeason: 'All',
         isNonVeg: false,

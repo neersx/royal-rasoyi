@@ -60,7 +60,7 @@
                                     </span>
                                   </div>
                                   <h4 class="title">
-                                    <a href="menu-details.html">{{ item.title }}</a>
+                                    <a (click)="goToFoodDetails(item.name)" >{{ item.title }}</a>
                                   </h4>
                                   <ul class="check-list style-one">
                                     <li *ngFor="let addon of item.foodItems">
