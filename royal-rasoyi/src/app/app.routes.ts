@@ -4,10 +4,10 @@ import { FoodMenuComponent } from './pages/food-menu/food-menu.component';
 import { AboutComponent } from './pages/about/about.component';
 import { FoodDetailsComponent } from './pages/food-details/food-details.component';
 
-export const routes: Routes = [{ path: '', component: HomeComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'menu', component: FoodMenuComponent, children: [] },
-    {path: 'food-details/:name', component: FoodDetailsComponent},
-    { path: 'about-us', component: AboutComponent }
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'menu', component: FoodMenuComponent, children: [] },
+  { path: 'food-details/:name', component: FoodDetailsComponent },
+  { path: 'about-us', component: AboutComponent },
 ];
-
