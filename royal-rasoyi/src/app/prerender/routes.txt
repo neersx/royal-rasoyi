@@ -1,0 +1,2 @@
+/food-details/maharaja-laddoo
+/food-details/royal-thali

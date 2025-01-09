@@ -8,6 +8,6 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'menu', component: FoodMenuComponent, children: [] },
-  { path: 'food-details/:name', component: FoodDetailsComponent },
+  { path: 'food-details/:name', component: FoodDetailsComponent, title: 'Food details and ingredients' },
   { path: 'about-us', component: AboutComponent },
 ];

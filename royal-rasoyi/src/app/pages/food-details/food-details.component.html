@@ -168,7 +168,7 @@
                 </div>
                 <div class="menu-info">
                   <h4 class="title">
-                    <a [routerLink]="'/food-details/' + relatedItem.name">
+                    <a (click)="goToFoodDetails(relatedItem.name)">
                       {{ relatedItem.title || 'Unknown Dish' }}
                     </a>
                   </h4>

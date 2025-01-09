@@ -1,10 +1,9 @@
-import { Component, Inject, inject, Input, PLATFORM_ID } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+import { Component, Inject, inject, PLATFORM_ID, REQUEST } from '@angular/core';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoodMenuService } from '../../services/food-menu.service';
-import { Meta, Title } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
+import { Meta, provideClientHydration, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-food-details',
@@ -29,6 +28,9 @@ export class FoodDetailsComponent {
   ) {
     // Check if the platform is browser
     this.isBrowser = isPlatformBrowser(platformId);
+
+    const request = inject(REQUEST);
+    console.log(request?.url);
   }
 
   ngOnInit(): void {
@@ -87,6 +89,10 @@ export class FoodDetailsComponent {
     this.metaService.updateTag({ property: 'og:description', content: product.description });
     this.metaService.updateTag({ property: 'og:image', content: product.images[0].url });
     
+  }
+
+  goToFoodDetails(name: any) {
+    this.router.navigate(['food-details', name]);
   }
 
   increaseQuantity(): any {
