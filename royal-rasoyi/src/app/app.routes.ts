@@ -7,7 +7,7 @@ import { FoodDetailsComponent } from './pages/food-details/food-details.componen
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'menu', component: FoodMenuComponent, children: [] },
-  { path: 'food-details/:name', component: FoodDetailsComponent, title: 'Food details and ingredients' },
+  { path: 'menu', component: FoodMenuComponent },
+  { path: 'food-details/:name', component: FoodDetailsComponent },
   { path: 'about-us', component: AboutComponent },
 ];

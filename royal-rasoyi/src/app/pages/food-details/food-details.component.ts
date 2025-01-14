@@ -1,16 +1,16 @@
-import { Component, Inject, inject, PLATFORM_ID, REQUEST } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, inject, PLATFORM_ID, REQUEST } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoodMenuService } from '../../services/food-menu.service';
-import { Meta, provideClientHydration, Title } from '@angular/platform-browser';
+import { MetaService } from '../../core/services/meta-tags.service';
 
 @Component({
   selector: 'app-food-details',
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  standalone: true,
   templateUrl: './food-details.component.html',
   styleUrl: './food-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FoodDetailsComponent {
   foodName: string | null = '';
@@ -19,12 +19,12 @@ export class FoodDetailsComponent {
   isBrowser = true;
 
   constructor(
-    private readonly metaService: Meta,
-    private readonly titleService: Title,
+    private readonly metaService: MetaService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly service: FoodMenuService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private readonly cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private readonly platformId: Object
   ) {
     // Check if the platform is browser
     this.isBrowser = isPlatformBrowser(platformId);
@@ -40,22 +40,17 @@ export class FoodDetailsComponent {
     if(!this.foodDetails) return;
     this.foodDetails.relatedItems = this.getRelatedFoods(this.foodDetails?.id);
     this.updateMetaTags(this.foodDetails);
+    this.cdr.detectChanges();
   }
 
-   /**
-   * Get related foods based on the same category.
-   * @param foodId - The ID of the current food item.
-   * @returns An array of related food items.
-   */
+
    getRelatedFoods(foodId: number): Array<{ id: number; name: string; image: string; description: string }> {
-    // Find the category of the selected food item
     const currentFood: any = this.foodMenuList.find((food: any) => food.id === foodId);
 
     if (!currentFood) {
       return []; // Return an empty array if the food item is not found
     }
 
-    // Filter the food items by the same category but exclude the current food item
     const relatedFoods = this.foodMenuList
       .filter((food: any) => food.category === currentFood.category && food.id !== foodId)
       .map((food: any) => ({
@@ -70,29 +65,29 @@ export class FoodDetailsComponent {
   }
 
   updateMetaTags(product: any) {
-    this.titleService.setTitle(product.title);
 
     let productPageUrl = '';
 
     // Generate the product page URL only in the browser
     if (this.isBrowser) {
       productPageUrl = `${window.location.origin}${this.router.url}`;
-      this.metaService.updateTag({ property: 'og:url', content: productPageUrl });
-      this.metaService.updateTag({ property: 'twitter:url', content: productPageUrl });
     }
+    const metaDetails = {
+      title: product.title,
+      description: product.description,
+      image: product.images[0].url,
+      url: productPageUrl,
+      type: 'website'
+    };
+    console.log(metaDetails);
 
-    this.metaService.updateTag({ property: 'twitter:title', content: product.title });
-    this.metaService.updateTag({ property: 'twitter:description', content: product.description });
-    this.metaService.updateTag({ property: 'twitter:image', content: product.images[0].url });
-
-    this.metaService.updateTag({ property: 'og:title', content: product.title });
-    this.metaService.updateTag({ property: 'og:description', content: product.description });
-    this.metaService.updateTag({ property: 'og:image', content: product.images[0].url });
-    
+    this.metaService.updateMetaTags(product.title, metaDetails);
+    this.cdr.detectChanges();
   }
 
   goToFoodDetails(name: any) {
     this.router.navigate(['food-details', name]);
+    this.cdr.detectChanges();
   }
 
   increaseQuantity(): any {

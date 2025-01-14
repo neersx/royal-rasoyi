@@ -1,27 +1,32 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FoodMenuService } from '../../services/food-menu.service';
 import { CommonModule, NgFor } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-
+import { Router } from '@angular/router';
+import { MetaService } from '../../core/services/meta-tags.service';
 
 @Component({
   selector: 'app-food-menu',
   imports: [CommonModule, NgFor],
   templateUrl: './food-menu.component.html',
   styleUrl: './food-menu.component.scss',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FoodMenuComponent implements OnInit {
   foodMenu: any[] = [];
   categories: string[] = [];
 
-    private readonly route = inject(ActivatedRoute);
      private readonly router = inject(Router);
   
-  constructor(private readonly service: FoodMenuService, private readonly titleService: Title, private readonly cdr: ChangeDetectorRef) {
-    this.titleService.setTitle(' Our Menu of Royal dishes with royal taste | Royal रसोई ');
+  constructor(private readonly service: FoodMenuService, private readonly metaService: MetaService, private readonly cdr: ChangeDetectorRef) {
+    const metaDetails = {
+      title: 'Authentic Indian Homemade Dishes from Royal रसोई  | The Taste you deserve',
+      description: 'Try our Maharaj Thali Shahi Thali, Aloo Pyaz Sandwich, or Sabudana Khichdi today! ',
+      image: 'https://royalrasoyi.com/assets/images/menu.jpg',
+      url: 'https://royalrasoyi.com/menu',
+      type: 'website'
+    };
+  
+    this.metaService.updateMetaTags('Menu', metaDetails);
   }
 
   ngOnInit(): void {

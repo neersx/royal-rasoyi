@@ -28,7 +28,7 @@
             <!--=== Menu Image ===-->
             <div class="menu-image mb-50 wow fadeInLeft">
               <img [src]="foodDetails.images?.[0].url || 'assets/images/default-food.jpg'" 
-                   [alt]="foodDetails.name || 'Food Image'" />
+                   [alt]="foodDetails.name || 'Food details'" />
             </div>
           </div>
           <div class="col-lg-6">
@@ -164,7 +164,7 @@
               <div class="menu-item related-menu-item text-center mb-30 wow fadeInUp">
                 <div class="menu-image">
                   <img height="250px" [src]="relatedItem.image?.url || 'assets/images/default-food.jpg'" 
-                       [alt]="relatedItem.image.name || 'Related Food'" />
+                       [alt]="relatedItem.title || 'Related Food'" />
                 </div>
                 <div class="menu-info">
                   <h4 class="title">
