@@ -19,7 +19,7 @@ export class HomeComponent {
       type: 'website'
     };
   
-    this.metaService.updateMetaTags('Home', metaDetails);
+    // this.metaService.updateMetaTags('Home', metaDetails);
   }
 
 }
