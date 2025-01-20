@@ -6,11 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "build:ssr": "ng build && ng run royal-rasoyi:server",
-    "serve:ssr": "node dist/royal-rasoyi/server/main.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "lite-server",
-    "serve:ssr:royal-rasoyi": "node dist/royal-rasoyi/server/server.mjs"
+    "serve:ssr": "node dist/royal-rasoyi/server/server.mjs"
   },
   "private": true,
   "dependencies": {
