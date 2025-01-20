@@ -15,27 +15,23 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/royal-rasoyi",
+            "outputPath": "dist/royal-rasoyi/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               }
             ],
             "styles": ["src/styles.scss"],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -43,6 +39,7 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
+              "outputHashing": "all",
               "budgets": [
                 {
                   "type": "initial",
@@ -54,31 +51,64 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
+              "sourceMap": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/royal-rasoyi/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            }
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "royal-rasoyi:build:production"
+              "browserTarget": "royal-rasoyi:build:production"
             },
             "development": {
-              "buildTarget": "royal-rasoyi:build:development"
+              "browserTarget": "royal-rasoyi:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "royal-rasoyi:build",
+            "serverTarget": "royal-rasoyi:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "royal-rasoyi:build:production",
+              "serverTarget": "royal-rasoyi:server:production"
+            },
+            "development": {
+              "browserTarget": "royal-rasoyi:build:development",
+              "serverTarget": "royal-rasoyi:server:development"
+            }
+          }
+        },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "royal-rasoyi:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -89,7 +119,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               }
             ],
             "styles": ["src/styles.scss"],
@@ -100,6 +131,6 @@
     }
   },
   "cli": {
-    "analytics": "ab6e1e91-dd66-47db-8667-c97ae88c8c03"
+    "analytics": false
   }
 }
