@@ -26,7 +26,7 @@ export class FoodMenuComponent implements OnInit {
       type: 'website'
     };
   
-    // this.metaService.updateMetaTags('Menu', metaDetails);
+    this.metaService.updateMetaTags('Menu', metaDetails);
   }
 
   ngOnInit(): void {
