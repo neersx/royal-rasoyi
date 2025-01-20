@@ -13,4 +13,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["node", "dist/royal-rasoi/server/server.mjs"]
+CMD ["npm", "run", "serve:ssr"]
