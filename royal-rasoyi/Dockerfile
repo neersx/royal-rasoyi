@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular SSR application
-RUN npm run build:ssr
+RUN npm run serve:ssr:royal-rasoyi
 
 # Stage 2: Run the application
 FROM node:22.13 as runner
@@ -23,7 +23,7 @@ FROM node:22.13 as runner
 WORKDIR /app
 
 # Copy the built application from the builder stage
-COPY --from=builder /app/dist/royal-rasoyi /app/dist/royal-rasoyi
+COPY --from=builder /app/dist /app/dist
 
 # Install only production dependencies
 COPY package*.json ./
@@ -32,5 +32,5 @@ RUN npm install --only=production
 # Expose port 4000
 EXPOSE 4000
 
-# Start the application using the SSR server
-CMD ["node", "dist/royal-rasoyi/server/main.js"]
+# Start the application
+CMD ["npm", "run", "serve:ssr:royal-rasoyi"]
