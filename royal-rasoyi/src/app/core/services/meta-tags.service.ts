@@ -48,7 +48,7 @@ export class MetaService {
         if (tag.property) {
           this.meta.removeTag(`property="${tag.property}"`);
         }
-        this.meta.addTag(tag);
+        this.meta.updateTag(tag);
         this.transferState.set(META_KEY, tags);
       });
   
