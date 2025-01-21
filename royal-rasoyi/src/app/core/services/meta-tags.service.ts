@@ -42,12 +42,12 @@ export class MetaService {
   
       // Remove existing tags and add updated ones
       tags.forEach((tag: any) => {
-        if (tag.name) {
-          this.meta.removeTag(`name="${tag.name}"`);
-        }
-        if (tag.property) {
-          this.meta.removeTag(`property="${tag.property}"`);
-        }
+        // if (tag.name) {
+        //   this.meta.removeTag(`name="${tag.name}"`);
+        // }
+        // if (tag.property) {
+        //   this.meta.removeTag(`property="${tag.property}"`);
+        // }
         this.meta.updateTag(tag);
         this.transferState.set(META_KEY, tags);
       });
