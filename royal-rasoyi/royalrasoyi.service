@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Define variables
+REPO_DIR="/var/source/royal-rasoyi/royal-rasoyi/"
+IMAGE_NAME="neers/royalrasoyi"
+TAG_PREFIX="v"
+CONTAINER_NAME="royalrasoyi”
+
+# Go to the repository directory
+cd "$REPO_DIR" || { echo "Directory $REPO_DIR not found! Exiting."; exit 1; }
+
+# Fetch and rebase from origin/master
+echo "Fetching and rebasing from origin/master..."
+git fetch && git rebase origin/master || { echo "Git operation failed! Exiting."; exit 1; }
+
+# Check if Dockerfile exists
+if [ ! -f Dockerfile ]; then
+    echo "Dockerfile not found! Exiting."
+    exit 1
+fi
+
+# Generate a new tag for the image
+NEW_TAG="${TAG_PREFIX}$(date +%m%d%H)"
+
+# Build the Docker image
+echo "Building Docker image ${IMAGE_NAME}:${NEW_TAG}..."
+docker build -t "${IMAGE_NAME}:${NEW_TAG}" . || { echo "Docker build failed! Exiting."; exit 1; }
+
+# Stop the existing container
+echo "Stopping existing container ${CONTAINER_NAME}..."
+docker stop "${CONTAINER_NAME}" 2>/dev/null || echo "No running container to stop."
+
+# Remove the existing container
+echo "Removing existing container ${CONTAINER_NAME}..."
+docker rm "${CONTAINER_NAME}" 2>/dev/null || echo "No container to remove."
+
+# Run the container with the new image
+echo "Running container ${CONTAINER_NAME} with image ${IMAGE_NAME}:${NEW_TAG}..."
+docker run --name "${CONTAINER_NAME}" -p 4000:4000 --restart unless-stopped -d   "${IMAGE_NAME}:${NEW_TAG}" || { echo "Failed to start container! Exiting."; exit 1; }
+
+echo "Service completed successfully!"
+
+- [ ] sudo chmod +x /usr/local/bin/royalrasoyi.sh
+
+[Unit]
+Description=Royal Rasoyi Git Update and Docker Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/royalrasoyi.sh
+Restart=on-failure
+User=root
+WorkingDirectory=/var/source/royal-rasoyi/royal-rasoyi/
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+[Install]
+WantedBy=multi-user.target
+
+- [ ] sudo systemctl daemon-reload
+- [ ] sudo systemctl enable royalrasoyi.service
+- [ ] sudo systemctl start royalrasoyi.service
+- [ ] sudo systemctl status royalrasoyi.service
+- [ ] sudo journalctl -u royalrasoyi.service -f
