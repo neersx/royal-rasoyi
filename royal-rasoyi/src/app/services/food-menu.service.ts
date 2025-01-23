@@ -35,7 +35,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Maharaja Laddoo Image',
-            url: 'https://royalrasoyi.com/assets/images/home-beef/about/item1.jpg',
+            url: 'assets/images/menu/maharaja-laddoo/thumbnail.webp',
           },
         ],
         description: 'A rich and traditional Indian sweet.',
@@ -47,7 +47,7 @@ export class FoodMenuService {
         lastUpdatedOn: new Date('2025-01-05'),
         size: 'SMALL',
         price: '800',
-        quantity: 10,
+        quantity: null,
         measurement: 'per Kg',
         addons: ['Extra Ghee', 'Dry Fruits'],
         discount: 10,
@@ -107,7 +107,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Chole Poori Image',
-            url: 'https://royalrasoyi.com/assets/images/home-beef/about/item2.jpeg',
+            url: 'assets/images/menu/chole-poori/thumbnail.webp',
           },
         ],
         description: `
@@ -168,8 +168,8 @@ export class FoodMenuService {
       },
       {
         id: 3,
-        name: 'royal-thali',
-        title: 'Deluxe Royal Thali',
+        name: 'royal-rajasthani-thali',
+        title: 'Royal Rajasthani Thali',
         bestSeason: 'All',
         isNonVeg: false,
         ingredients: [
@@ -182,7 +182,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Royal Thali Image',
-            url: 'https://royalrasoyi.com/assets/images/menu/royal-thali.png',
+            url: 'assets/images/menu/royal-rajasthani-thali/thumbnail.webp',
           },
         ],
         description: 'A grand and wholesome meal.',
@@ -277,7 +277,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Veg Appe Image',
-            url: 'https://royalrasoyi.com/assets/images/home-beef/about/item3.jpg',
+            url: 'assets/images/menu/veg-appe/thumbnail.webp',
           },
         ],
         description: 'A healthy and tasty snack.',
@@ -339,7 +339,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Shahi Laddoo Image',
-            url: 'https://royalrasoyi.com/assets/images/menu/shaahi-laddoo.png',
+            url: 'assets/images/menu/shahi-laddoo/thumbnail.webp',
           },
         ],
         description: 'A luxurious and healthy sweet.',
@@ -405,7 +405,7 @@ export class FoodMenuService {
           {
             id: 1,
             name: 'Veg Appe Image',
-            url: 'https://royalrasoyi.com/assets/images/menu/veg-sandwich.webp',
+            url: 'https://royalrasoyi.com/assets/images/menu/veg-sandwich/thumbnail.webp',
           },
         ],
         description: 'A healthy and tasty snack.',
@@ -519,6 +519,147 @@ export class FoodMenuService {
         ],
         comments: [],
       },
-    ];
+        {
+          "id": 8,
+          "name": "pao-bhaaji",
+          "title": "Pao Bhaaji",
+          "bestSeason": "All",
+          "isNonVeg": false,
+          "ingredients": [
+            { "id": 1, "name": "Potatoes", "healthBenefits": "Rich in carbohydrates" },
+            { "id": 2, "name": "Tomatoes", "healthBenefits": "High in Vitamin C" },
+            { "id": 3, "name": "Spices", "healthBenefits": "Boosts metabolism" }
+          ],
+          "region": "West India",
+          "images": [
+            { "id": 2, "name": "Pao Bhaaji Image", "url": "assets/images/menu/pao-bhaaji/thumbnail.webp" }
+          ],
+          "description": "A spicy and flavorful street food dish.",
+          "category": "snacks",
+          "lifeInDays": 1,
+          "flavourType": "spicy",
+          "createdOn": "2025-01-01T00:00:00.000Z",
+          "isDeleted": false,
+          "lastUpdatedOn": "2025-01-05T00:00:00.000Z",
+          "size": "MEDIUM",
+          "price": "150",
+          "quantity": null,
+          "measurement": "per plate",
+          "addons": ["Extra Butter", "Pav"],
+          "discount": 5,
+          "days": "Tuesday",
+          "type": "Dish",
+          "availableToday": "true",
+          "ratings": 4.7,
+          "foodItems": [
+            {
+              "id": 2,
+              "name": "Pao Bhaaji Plate",
+              "quantity": null,
+              "isRequired": true,
+              "availableToday": "true",
+              "weight": "250 g",
+              "description": "Spicy Bhaaji served with buttery Pao."
+            }
+          ],
+          "comments": [
+            { "id": 1, "comment": "Loved the buttery pao!", "userId": 103, "userName": "Ravi Kumar", "userImage": "https://example.com/ravi.jpg" }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "methi-dhaniya-paratha",
+          "title": "Methi Dhaniya Paratha",
+          "bestSeason": "Winter",
+          "isNonVeg": false,
+          "ingredients": [
+            { "id": 1, "name": "Fenugreek", "healthBenefits": "Good for digestion" },
+            { "id": 2, "name": "Coriander", "healthBenefits": "Rich in antioxidants" },
+            { "id": 3, "name": "Wheat Flour", "healthBenefits": "High in fiber" }
+          ],
+          "region": "North India",
+          "images": [
+            { "id": 3, "name": "Methi Dhaniya Paratha Image", "url": "assets/images/menu/methi-dhaniya-paratha/thumbnail.webp" }
+          ],
+          "description": "Healthy flatbread with fenugreek and coriander.",
+          "category": "breakfast",
+          "lifeInDays": 2,
+          "flavourType": "mild",
+          "createdOn": "2025-01-01T00:00:00.000Z",
+          "isDeleted": false,
+          "lastUpdatedOn": "2025-01-05T00:00:00.000Z",
+          "size": "LARGE",
+          "price": "80",
+          "quantity": null,
+          "measurement": "per piece",
+          "addons": ["Butter", "Curd"],
+          "discount": 10,
+          "days": "Wednesday",
+          "type": "Dish",
+          "availableToday": "true",
+          "ratings": 4.6,
+          "foodItems": [
+            {
+              "id": 3,
+              "name": "Paratha Piece",
+              "quantity": null,
+              "isRequired": true,
+              "availableToday": "true",
+              "weight": "200 g",
+              "description": "Soft and healthy paratha pieces."
+            }
+          ],
+          "comments": [
+            { "id": 1, "comment": "Perfectly cooked!", "userId": 104, "userName": "Neha Sharma", "userImage": "https://example.com/neha.jpg" }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "matar-mashroom-meal",
+          "title": "Matar Mushroom Meal",
+          "bestSeason": "Winter",
+          "isNonVeg": false,
+          "ingredients": [
+            { "id": 1, "name": "Mushrooms", "healthBenefits": "Rich in protein" },
+            { "id": 2, "name": "Green Peas", "healthBenefits": "High in fiber" },
+            { "id": 3, "name": "Rice", "healthBenefits": "Good source of carbohydrates" }
+          ],
+          "region": "North India",
+          "images": [
+            { "id": 5, "name": "Matar Mushroom Meal Image", "url": "assets/images/menu/matar-mushroom-meal/thumbnail.webp" }
+          ],
+          "description": "A hearty meal with mushrooms and peas in a creamy curry.",
+          "category": "thali",
+          "lifeInDays": 1,
+          "flavourType": "spicy",
+          "createdOn": "2025-01-01T00:00:00.000Z",
+          "isDeleted": false,
+          "lastUpdatedOn": "2025-01-05T00:00:00.000Z",
+          "size": "LARGE",
+          "price": "200",
+          "quantity": null,
+          "measurement": "per meal",
+          "addons": ["Raita", "Papad"],
+          "discount": 12,
+          "days": "Friday",
+          "type": "Dish",
+          "availableToday": "true",
+          "ratings": 4.6,
+          "foodItems": [
+            {
+              "id": 5,
+              "name": "Matar Mushroom Curry with Rice",
+              "quantity": null,
+              "isRequired": true,
+              "availableToday": "true",
+              "weight": "400 g",
+              "description": "Flavorful curry served with steamed rice."
+            }
+          ],
+          "comments": [
+            { "id": 1, "comment": "Delicious and filling!", "userId": 106, "userName": "Priya Singh", "userImage": "https://example.com/priya.jpg" }
+          ]
+        }
+      ]      
   }
 }

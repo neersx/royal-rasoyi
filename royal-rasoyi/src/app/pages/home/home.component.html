@@ -96,267 +96,71 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <!--=== Foodix Tabs ===-->
-                        <div class="foodix-tabs style-four mb-70">
+                        <div class="foodix-tabs style-two mb-70">
                             <ul class="nav nav-tabs wow fadeInDown">
-                                <li>
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#cat1">Sweets</button>
+                                <li *ngFor="let category of categories; let i = index">
+                                  <button
+                                    class="nav-link"
+                                    [class.active]="i === 0"
+                                    data-bs-toggle="tab"
+                                    [attr.data-bs-target]="'#' + category"
+                                  >
+                                    {{ category | titlecase }}
+                                  </button>
                                 </li>
-                                <li>
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cat2">Thaali</button>
-                                </li>
-                                <li>
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cat3">Breakfast</button>
-                                </li>
-                                <li>
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cat4">Snacks</button>
-                                </li>
-                            </ul>
+                              </ul>
+                              
                         </div>
                     </div>
                 </div>
+ 
                 <div class="row">
                     <div class="col-lg-12">
-                        <!--=== Tab Content ===-->
-                        <div class="tab-content">
-                            <!--=== Tab Pane ===-->
-                            <div class="tab-pane fade show active" id="cat1">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/maharaja-laddoo.png" alt="maharaja laddoo">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu/maharaja-laddoo.html">Maharaja Laddoo</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(5)</a></li>
-                                                </ul>
-                                                <p>🥮 Maharaja Laddoo – A regal sweet treat to satisfy your royal cravings!</p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>1280 per Kg</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/shaahi-laddoo.png" alt="shaahi laddoo">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu/shaahi-laddoo.html">Shaahi Laddoo</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.8)</a></li>
-                                                </ul>
-                                                <p>🥮 Shahi Laddoo – A luxurious, melt-in-your-mouth delicacy, made with rich ingredients.</p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>1049.00 per Kg</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/besan-laddoo.png" alt="besan laddoo">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu/besan-laddoo.html">Besan Laddoo</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.9)</a></li>
-                                                </ul>
-                                                <p>🥮 Aromatic and delicious traditional laddo made with gram flour, ghee, sugar & cardamoms. </p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>315 per Kg</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                      <div class="tab-content">
+                        <!-- Iterate over categories -->
+                        <div
+                          class="tab-pane fade"
+                          *ngFor="let category of categories; let first = first"
+                          [ngClass]="{ show: first, active: first }"
+                          [id]="category"
+                        >
+                          <div class="row">
+                            <!-- Iterate over food items within each category -->
+                            <div
+                              class="col-xl-4 col-md-6 col-sm-12"
+                              *ngFor="let item of getFoodByCategory(category)"
+                            >
+                              <div class="menu-item style-four mb-30">
+                                <div class="menu-thumbnail">
+                                  <img
+                                    [src]="item.images[0]?.url || 'assets/images/product/product-placeholder.jpg'"
+                                    [alt]="item.name" height="247px"
+                                  />
                                 </div>
-                            </div>
-                            <!--=== Tab Pane ===-->
-                            <div class="tab-pane fade" id="cat2">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/royal-thali.png" alt="royal thali">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">Royal Rajasthani Thali</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.7)</a></li>
-                                                </ul>
-                                                <p>  Authentic Rajasthani, Rich in fiber and packed with energy. Sugar-free dessert option available for Churma! </p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>390.00</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="menu-info">
+                                  <div class="menu-meta">
+                                    <span class="price"><span class="currency">₹</span>{{ item.price }} {{item.measurement}}</span>
+                                    <span class="rating">
+                                      <i class="fas fa-star"></i><a href="#">{{ item.ratings }}</a>
+                                    </span>
+                                  </div>
+                                  <h4 class="title">
+                                    <a href="javascript:;" (click)="goToFoodDetails(item.name)" >{{ item.title }}</a>
+                                  </h4>
+                                  <ul class="check-list style-one">
+                                    <li *ngFor="let addon of item.foodItems">
+                                      <i class="far fa-check-circle"></i> {{addon.quantity ?? addon.weight}} {{ addon.name }} 
+                                    </li>
+                                  </ul>
+                                  <a href="menu-details.html" class="theme-btn style-two">
+                                    <i class="far fa-cart-plus"></i> Add to Cart
+                                  </a>
                                 </div>
+                              </div>
                             </div>
-                            <!--=== Tab Pane ===-->
-                            <div class="tab-pane fade" id="cat3">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/chole-poori.png" alt="Chole Poori">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">Chole & Oats Poori </a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.8)</a></li>
-                                                </ul>
-                                                <p>Start your day with a burst of flavor or enjoy a fulfilling lunch with our homemade Chole and Puri! 
-                                                    It’s comfort food that brings happiness to your plate.</p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>125.00</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/appe.png" alt="South Indian Appe ">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">South Indian Appe & Chutney</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(5.0)</a></li>
-                                                </ul>
-                                                <p>Crunch into royalty! 👑 Our Vegetable Appe is perfectly crispy, made with fresh, wholesome ingredients, and packed with authentic flavors. </p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>120.00</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/veg-sandwich.webp" alt="Veg Sandwich">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">Fresh Veggie Sandwich</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.6)</a></li>
-                                                </ul>
-                                                <p>Freshly prepared with morning veegetables, smoked crunchy grilled veg Sandwich.</p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>149</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--=== Tab Pane ===-->
-                            <div class="tab-pane fade" id="cat4">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/paasta.png" alt="Lajeez Pasta">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">Lajeez Pasta</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.5)</a></li>
-                                                </ul>
-                                                <p>Savor the exceptional with our NEW Steak! Discover succulence redefined. </p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>215.00</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <!--=== Menu Item ===-->
-                                        <div class="menu-item style-five mb-40">
-                                            <div class="menu-thumbnail">
-                                                <img src="assets/images/menu/namak-para.jpg" alt="Namak Para">
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4 class="title"><a href="menu-details.html">Namak Para</a></h4>
-                                                <ul class="ratings">
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><i class="fas fa-star"></i></li>
-                                                    <li><a href="#">(4.6)</a></li>
-                                                </ul>
-                                                <p>Savor the exceptional with our NEW Steak! Discover succulence redefined. </p>
-                                                <div class="menu-bottom">
-                                                    <p class="price"><span class="currency">&#8377;</span>99.00 per 200 gm</p>
-                                                    <a href="cart.html" class="cart-icon"><i class="fas fa-cart-plus"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
