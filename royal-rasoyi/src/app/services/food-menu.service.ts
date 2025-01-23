@@ -28,7 +28,7 @@ export class FoodMenuService {
             name: 'Ghee',
             healthBenefits: 'Boosts energy and aids digestion',
           },
-          { id: 3, name: 'Sugar', healthBenefits: 'Provides quick energy' },
+          { id: 3, name: 'Gudd & Jaggery', healthBenefits: 'Provides quick energy' },
         ],
         region: 'North India',
         images: [

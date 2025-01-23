@@ -190,8 +190,4 @@ sudo systemctl disable royalrasoyi.service
 - [systemd Documentation](https://www.freedesktop.org/wiki/Software/systemd/)
 - [Docker Documentation](https://docs.docker.com/)
 - [Git Documentation](https://git-scm.com/doc)
-```
 
----
-
-This `README.md` file includes all necessary steps to create, test, and troubleshoot the `royalrasoyi` service. Let me know if you need further modifications!
